@@ -1,17 +1,22 @@
 package cse360assignment02;
 
+import java.util.ArrayList;
+
 /**
  * AddingMachine represents an Adding Machine capable of adding
  * and, subtracting, and displaying numbers
  */ 
 public class AddingMachine {
   private int total;
+  private ArrayList<String> history;
   
   /**
    * Constructs Adding Machine and initializes total to 0
    */
   public AddingMachine () {
     total = 0;  // not needed - included for clarity
+    history = new ArrayList<String>();
+    history.add("0");
   }
   
   /**
@@ -19,7 +24,7 @@ public class AddingMachine {
    * @return the total value so far
    */
   public int getTotal () {
-    return 0;
+    return total;
   }
   
   /**
@@ -27,6 +32,8 @@ public class AddingMachine {
    * @param value the integer to add to the total
    */
   public void add (int value) {
+	  total += value;
+	  history.add("+ " + value);
   }
 
   /**
@@ -34,6 +41,8 @@ public class AddingMachine {
    * @param value the integer to subtract
    */
   public void subtract (int value) {
+	  total -= value;
+	  history.add("- " + value);
   }
 
   /**
@@ -41,12 +50,15 @@ public class AddingMachine {
    * @return AddingMachine history as string
    */
   public String toString () {
-    return "";
+    return String.join(" ", history);
   }
 
   /**
    * Clears the adding machine
    */
   public void clear() {
+	  history = new ArrayList<String>();
+	  history.add("0");
+	  total = 0;
   }
 }
